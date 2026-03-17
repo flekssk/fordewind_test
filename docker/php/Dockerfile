@@ -1,4 +1,4 @@
-FROM php:8.5-cli-alpine AS base
+FROM php:8.4-cli-alpine AS base
 
 # Системные пакеты и зависимости для сборки PHP-расширений
 RUN apk update && apk add --no-cache \
