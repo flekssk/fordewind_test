@@ -34,5 +34,8 @@ return [
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
     ],
-
+    'cars' => [
+        'data_storage' => 'local',
+        'data_path' => 'cars/',
+    ]
 ];
