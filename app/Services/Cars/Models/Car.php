@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Car extends Model
 {
-    public static array $availableFields = ['id', 'model', 'year', 'brand', 'images'];
+    public static array $availableFields = ['id', 'model', 'year', 'brand', 'images', 'votes_count', 'brand_votes_count'];
     public $timestamps = true;
     protected $fillable = ['car_brand_id', 'model', 'year'];
 

@@ -10,6 +10,7 @@ use FKS\Search\Repositories\SearchRepository;
 use FKS\Search\ValueObjects\SearchConditions;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 
 /**
  * @extends Repository<Car>
@@ -27,6 +28,14 @@ class CarsRepository extends SearchRepository
             $searchConditions,
             $this->getQuery()->inRandomOrder()
         );
+    }
+
+    public static function getMapAvailableFieldToSelect(): array
+    {
+        return [
+            'votes_count' => DB::raw('(SELECT COUNT(*) FROM car_votes WHERE car_votes.car_id = cars.id) AS votes_count'),
+            'brand_votes_count' => DB::raw('(SELECT COUNT(*) FROM car_votes WHERE car_votes.car_id IN (SELECT car_id FROM cars sc WHERE sc.car_brand_id = cars.car_brand_id)) AS brand_votes_count')
+        ];
     }
 
     public static function getMapAvailableFieldToWith(): array
